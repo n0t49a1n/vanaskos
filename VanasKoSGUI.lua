@@ -36,6 +36,7 @@ local buttonList = {}
 
 VanasKoSGUI.numConfigOptions = 8
 VanasKoSGUI.dropDownFrame = nil
+GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 
 local VanasKoSConfigOptions = {
 	name = "VanasKoS",

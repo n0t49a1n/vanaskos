@@ -173,6 +173,7 @@ end
 --[[----------------------------------------------------------------------
   ACE Functions
 ------------------------------------------------------------------------]]
+GetAddOnMetadata = C_AddOns.GetAddOnMetadata
 function VanasKoS:OnInitialize()
 	VANASKOS.VERSION = GetAddOnMetadata("VanasKoS", "Version")
 	self.db = LibStub("AceDB-3.0"):New("VanasKoSDB")
