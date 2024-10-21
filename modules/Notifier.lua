@@ -625,7 +625,7 @@ function VanasKoSNotifier:OnEnable()
 	end
 	--]]
 
-	self:HookScript(GameTooltip, "OnTooltipSetUnit")
+	--self:HookScript(GameTooltip, "OnTooltipSetUnit")
 end
 
 function VanasKoSNotifier:RefreshConfig()
@@ -985,8 +985,8 @@ function VanasKoSNotifier:Player_Target_Changed(message, data)
 				TargetFrameTextureFrameTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Rare")
 				TargetFrameTextureFrameTexture:SetVertexColor(0.0, 1.0, 0.0, TargetFrameTextureFrameTexture:GetAlpha())
 			else
-				TargetFrameTextureFrameTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame")
-				TargetFrameTextureFrameTexture:SetVertexColor(1.0, 1.0, 1.0, TargetFrameTextureFrameTexture:GetAlpha())
+				--TargetFrameTextureFrameTexture:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame")
+				--TargetFrameTextureFrameTexture:SetVertexColor(1.0, 1.0, 1.0, TargetFrameTextureFrameTexture:GetAlpha())
 			end
 		else
 			TargetFrameTextureFrameTexture:SetVertexColor(1.0, 1.0, 1.0, TargetFrameTextureFrameTexture:GetAlpha())

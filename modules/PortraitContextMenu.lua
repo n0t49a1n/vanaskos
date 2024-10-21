@@ -38,20 +38,22 @@ function VanasKoSPortraitContextMenu:OnInitialize()
 end
 
 function VanasKoSPortraitContextMenu:OnEnable()
-	for i, v in ipairs(defaultLists) do
-		local listname = VanasKoSGUI:GetListName(v)
-		local shortname = "VANASKOS_ADD_" .. v
-		VanasKoSTargetPopupButtons[shortname] = {
-			text = format(L["Add to %s"], listname)
-		}
-		VanasKoSTargetPopupMenu[i] = shortname
-	end
-	VanasKoSTargetPopupButtons["VANASKOS_LOOKUP"] = {
-		text = L["Lookup in VanasKoS"]
-	}
-	VanasKoSTargetPopupMenu[#defaultLists + 1] = "VANASKOS_LOOKUP"
-	self:SecureHook("UnitPopup_ShowMenu")
+    for i, v in ipairs(defaultLists) do
+        local listname = VanasKoSGUI:GetListName(v)
+        local shortname = "VANASKOS_ADD_" .. v
+        VanasKoSTargetPopupButtons[shortname] = {
+            text = format(L["Add to %s"], listname)
+        }
+        VanasKoSTargetPopupMenu[i] = shortname
+    end
+
+    VanasKoSTargetPopupButtons["VANASKOS_LOOKUP"] = {
+        text = L["Lookup in VanasKoS"]
+    }
+    VanasKoSTargetPopupMenu[#defaultLists + 1] = "VANASKOS_LOOKUP"
+    --self:SecureHook("UnitPopup_ShowMenu")
 end
+
 
 function VanasKoSPortraitContextMenu:OnDisable()
 	self:Unhook("UnitPopup_ShowMenu")

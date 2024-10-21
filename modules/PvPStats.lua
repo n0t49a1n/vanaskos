@@ -5,7 +5,8 @@ Displays Stats about PvP in a window
 
 local L = LibStub("AceLocale-3.0"):GetLocale("VanasKoS/PvPStats", false)
 local GUI = LibStub("AceGUI-3.0")
-local Graph = LibStub("LibGraph-2.0", true)
+--FIX - Keeping this feature ?
+--local Graph = LibStub("LibGraph-2.0", true)
 local VanasKoS = LibStub("AceAddon-3.0"):GetAddon("VanasKoS")
 local VanasKoSGUI = VanasKoS:GetModule("GUI")
 local VanasKoSPvPStats = VanasKoS:NewModule("PvPStats", "AceEvent-3.0")

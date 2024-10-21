@@ -48,86 +48,6 @@ local Broker = ldb:NewDataObject("VanasKoS", {
 	end
 })
 
-local minimapOptions = {
-	{
-		text = VANASKOS.NAME .. " " .. VANASKOS.VERSION,
-		isTitle = true,
-		isNotRadio = true,
-		notCheckable = true,
-	},
-	{
-		text = L["Main Window"],
-		func = function()
-			VanasKoS:ToggleMenu()
-		end,
-		checked = function()
-			return VanasKoSGUI.frame:IsVisible()
-		end,
-		isNotRadio = true,
-	},
-	{
-		text = L["Warning Window"],
-		func = function()
-			if warnFrame then
-				VanasKoS:ToggleModuleActive("WarnFrame")
-				warnFrame:Update()
-			end
-		end,
-		checked = function()
-			return warnFrame.enabledState
-		end,
-		isNotRadio = true,
-	},
-	{
-		text = L["Configuration"],
-		func = function()
-			VanasKoSGUI:OpenConfigWindow()
-		end,
-		isNotRadio = true,
-		notCheckable = true,
-	},
-	{
-		text = L["Add Player to KoS"],
-		func = function()
-			VanasKoS:AddEntryFromTarget("PLAYERKOS")
-		end,
-		isNotRadio = true,
-		notCheckable = true,
-	},
-	{
-		text = L["Add Guild to KoS"],
-		func = function()
-			VanasKoS:AddEntryFromTarget("GUILDKOS")
-		end,
-		isNotRadio = true,
-		notCheckable = true,
-	},
-	{
-		text = L["Add Player to Hatelist"],
-		func = function()
-			VanasKoS:AddEntryFromTarget("HATELIST")
-		end,
-		isNotRadio = true,
-		notCheckable = true,
-	},
-	{
-		text = L["Add Player to Nicelist"],
-		func = function()
-			VanasKoS:AddEntryFromTarget("NICELIST")
-		end,
-		isNotRadio = true,
-		notCheckable = true,
-	},
-	{
-		text = L["Add Attacker to KoS"],
-		hasArrow = true,
-		menuList = attackerMenu,
-		isNotRadio = true,
-		notCheckable = true,
-	},
-}
-
-
 function VanasKoSMinimapButton:OnInitialize()
 	self.db = VanasKoS.db:RegisterNamespace("MinimapButton", {
 		profile = {
@@ -182,7 +102,6 @@ function VanasKoSMinimapButton:OnInitialize()
 	warnFrame = VanasKoS:GetModule("WarnFrame", false)
 	VanasKoSGUI:AddModuleToggle("MinimapButton", L["Minimap Button"])
 	VanasKoSGUI:AddConfigOption("MinimapButton", self.configOptions)
-	minimapOptions[1].text = VANASKOS.NAME .. " " .. VANASKOS.VERSION
 	self:SetEnabledState(self.db.profile.Enabled)
 end
 
@@ -216,31 +135,43 @@ function VanasKoSMinimapButton:UpdateOptions()
 end
 
 function VanasKoSMinimapButton:OnClick(button)
-	local action = nil
+    local action = nil
 
-	if(button == "LeftButton" and not IsShiftKeyDown()) then
-		if(self.db.profile.ReverseButtons) then
-			action = "addkos"
-		else
-			action = "menu"
-		end
-	elseif(button == "RightButton") then
-		if(self.db.profile.ReverseButtons) then
-			action = "menu"
-		else
-			action = "addkos"
-		end
-	end
+    -- Determine action based on button and shift key status
+    if button == "LeftButton" then
+        action = "addkos" 
+    elseif button == "RightButton" then
+        action = "menu" 
+    end
 
-	if (action == "menu") then
-		VanasKoSMinimapButton:UpdateOptions()
-		local x, y = GetCursorPosition()
-		local uiScale = UIParent:GetEffectiveScale()
-		EasyMenu(minimapOptions, VanasKoSGUI.dropDownFrame, UIParent, x/uiScale, y/uiScale, "MENU")
-	elseif(action == "addkos") then
-		VanasKoS:AddEntryFromTarget("PLAYERKOS")
-	end
+    -- Perform the action
+    if action == "menu" then
+        self:UpdateOptions()  -- Use `self` to refer to the current object
+        local x, y = GetCursorPosition()
+        local uiScale = UIParent:GetEffectiveScale()
+MenuUtil.CreateContextMenu(UIParent, function(ownerRegion, rootDescription)
+    rootDescription:CreateTitle(VANASKOS.NAME .. " " .. VANASKOS.VERSION)
+	rootDescription:CreateButton("Main Window", function() VanasKoSGUI.frame:Show() end)
+rootDescription:CreateButton("Warning Window", function() VanasKoS:ToggleModuleActive("WarnFrame") end)
+rootDescription:CreateButton("Configuration", function() VanasKoSGUI:OpenConfigWindow() end)
+rootDescription:CreateButton("Add Player to KoS", function() VanasKoS:AddEntryFromTarget("PLAYERKOS") end)
+rootDescription:CreateButton("Add Guild to KoS", function() VanasKoS:AddEntryFromTarget("GUILDKOS") end)
+rootDescription:CreateButton("Add Player to Hatelist", function() VanasKoS:AddEntryFromTarget("HATELIST") end)
+rootDescription:CreateButton("Add Player to Nicelist", function() VanasKoS:AddEntryFromTarget("NICELIST") end)
+rootDescription:CreateButton("Add Attacker to KoS", function() VanasKoS:AddEntryFromTarget("PLAYERKOS") end)
+
+	
+	
+end)
+    elseif action == "addkos" then
+        if UnitExists("target") then  -- Ensure a target exists before adding
+            VanasKoS:AddEntryFromTarget("PLAYERKOS")
+        else
+            print("No valid target selected.")  -- Notify the user if no target is selected
+        end
+    end
 end
+
 
 function VanasKoSMinimapButton:OnEnable()
 	if(not icon:IsRegistered(self.name)) then

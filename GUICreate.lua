@@ -31,7 +31,7 @@ end
 
 
 function VanasKoSGUICreate:CreateTabButtons()
-	local tabButton1 = CreateFrame("Button", "VanasKoSFrameTab1", VanasKoSGUI.frame, "CharacterFrameTabButtonTemplate")
+	local tabButton1 = CreateFrame("Button", "VanasKoSFrameTab1", VanasKoSGUI.frame, "PanelTabButtonTemplate")
 	tabButton1:SetID(1)
 	tabButton1:SetPoint("BOTTOMLEFT", VanasKoSGUI.frame, "BOTTOMLEFT", 11, 45)
 	tabButton1:SetText(L["Lists"])
@@ -41,7 +41,7 @@ function VanasKoSGUICreate:CreateTabButtons()
 	end)
 
 
-	local tabButton2 = CreateFrame("Button", "VanasKoSFrameTab2", VanasKoSGUI.frame, "CharacterFrameTabButtonTemplate")
+	local tabButton2 = CreateFrame("Button", "VanasKoSFrameTab2", VanasKoSGUI.frame, "PanelTabButtonTemplate")
 	tabButton2:SetID(2)
 	tabButton2:SetPoint("LEFT", tabButton1, "RIGHT", -14, 0)
 	tabButton2:SetText(L["About"])
@@ -101,6 +101,7 @@ function VanasKoSGUICreate:UpdateAboutText()
 		.. "<h2>|cFFFFFFFFFRRjak |r</h2><br />"
 		.. "<h2>|cFFFFFFFFVane (|cFF7777FFEU-Aegwynn|r)|r</h2><br />"
 		.. "<h2>|cFFFFFFFFXilcoy (|cFF7777FFUS-Lightning's Blade|r)|r</h2><br />"
+		.. "<h2>|cFFFFFFFFn0t49a1n (|cFF7777FF11.0.5|r)|r</h2><br />"
 		.. "<h2><br />|cFF00FF00Localization:|r</h2><br />"
 		.. "<h2>French: |cFFFFFFFFScrapy (|cFF7777FFEU-Archimonde|r)|r</h2><br />"
 		.. "<h2>Korean: |cFFFFFFFFFenlis|r</h2><br />"
@@ -296,7 +297,7 @@ function VanasKoSGUICreate:CreateListFrame()
 	toggleRButton:SetPushedTextOffset(0, 0)
 	local toggleRButtonText = toggleRButton:CreateFontString(toggleRButton:GetName() .. "Text", "BORDER")
 	toggleRButtonText:SetWidth(100)
-	toggleRButtonText:SetJustifyH("MIDDLE")
+	--toggleRButtonText:SetJustifyH("MIDDLE")
 	toggleRButtonText:SetPoint("RIGHT", toggleRButton, "LEFT", 0, 0)
 	toggleRButton:SetFontString(toggleRButtonText)
 	listFrame.toggleRButton = toggleRButton

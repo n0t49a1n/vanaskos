@@ -10,7 +10,9 @@
 ## DefaultState: Enabled
 ## SavedVariables: VanasKoSDB
 ## SavedVariablesPerCharacter: VanasKoSDBPC
-## OptionalDeps: Ace3, LibDialog-1.0, LibSharedMedia-3.0, LibDBIcon-1.0, LibLevelGuess-1.0, LibGraph-2.0
+## OptionalDeps: Ace3, LibDialog-1.0, LibSharedMedia-3.0, LibDBIcon-1.0, LibLevelGuess-1.0
+#FIX - Keeping this feature ?
+#, LibGraph-2.0
 
 #@no-lib-strip@
 Libs\LibStub\LibStub.lua
@@ -29,7 +31,8 @@ Libs\AceSerializer-3.0\AceSerializer-3.0.xml
 Libs\AceTimer-3.0\AceTimer-3.0.xml
 Libs\LibSharedMedia-3.0\lib.xml
 Libs\LibLevelGuess-1.0\lib.xml
-Libs\LibGraph-2.0\LibGraph-2.0.lua
+#FIX - Keeping this feature ?
+#Libs\LibGraph-2.0\LibGraph-2.0.lua
 #@end-no-lib-strip@
 Libs\LibDialog-1.0\lib.xml
 Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua

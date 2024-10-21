@@ -76,7 +76,7 @@ local function CreateWarnFrameFonts(size)
 
 	if (kosFont == nil) then
 		kosFont = CreateFont("VanasKoS_FontKos")
-		kosFont:SetFont(SML:Fetch("font"), size)
+		kosFont:SetFont(SML:Fetch("font"), size, "")
 	end
 	kosFont:SetTextColor(VanasKoSWarnFrame.db.profile.KoSTextColorR,
 				VanasKoSWarnFrame.db.profile.KoSTextColorG,
@@ -84,7 +84,7 @@ local function CreateWarnFrameFonts(size)
 
 	if (enemyFont == nil) then
 		enemyFont = CreateFont("VanasKoS_FontEnemy")
-		enemyFont:SetFont(SML:Fetch("font"), size)
+		enemyFont:SetFont(SML:Fetch("font"), size, "")
 	end
 	enemyFont:SetTextColor(VanasKoSWarnFrame.db.profile.EnemyTextColorR,
 				VanasKoSWarnFrame.db.profile.EnemyTextColorG,
@@ -92,7 +92,7 @@ local function CreateWarnFrameFonts(size)
 
 	if (friendlyFont == nil) then
 		friendlyFont = CreateFont("VanasKoS_FontFriendly")
-		friendlyFont:SetFont(SML:Fetch("font"), size)
+		friendlyFont:SetFont(SML:Fetch("font"), size, "")
 	end
 	friendlyFont:SetTextColor(VanasKoSWarnFrame.db.profile.FriendlyTextColorR,
 				VanasKoSWarnFrame.db.profile.FriendlyTextColorG,
@@ -100,7 +100,7 @@ local function CreateWarnFrameFonts(size)
 
 	if (normalFont == nil) then
 		normalFont = CreateFont("VanasKoS_FontNormal")
-		normalFont:SetFont(SML:Fetch("font"), size)
+		normalFont:SetFont(SML:Fetch("font"), size, "")
 	end
 	normalFont:SetTextColor(VanasKoSWarnFrame.db.profile.NormalTextColorR,
 				VanasKoSWarnFrame.db.profile.NormalTextColorG,
