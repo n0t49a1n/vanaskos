@@ -827,19 +827,19 @@ function lib:Spawn(reference, data)
     end
 
     -- Anchor to the bottom of existing dialogs. If none exist, check to see if there are visible default StaticPopupDialogs and anchor to that instead; else, anchor to UIParent.
-    if #active_dialogs > 0 then
-        dialog:SetPoint("TOP", active_dialogs[#active_dialogs], "BOTTOM", 0, 0)
-    else
-        local default_dialog = _G.StaticPopup_DisplayedFrames[#_G.StaticPopup_DisplayedFrames]
+if #active_dialogs > 0 then
+    dialog:SetPoint("TOP", active_dialogs[#active_dialogs], "BOTTOM", 0, 0)
+else
 
-        if default_dialog then
-            dialog:SetPoint("TOP", default_dialog, "BOTTOM", 0, 0)
-        else
-            dialog:SetPoint("TOP", _G.UIParent, "TOP", 0, -135)
-        end
+    if _G.StaticPopup_DisplayedFrames and #_G.StaticPopup_DisplayedFrames > 0 then
+        local default_dialog = _G.StaticPopup_DisplayedFrames[#_G.StaticPopup_DisplayedFrames]
+        dialog:SetPoint("TOP", default_dialog, "BOTTOM", 0, 0)
+    else
+        dialog:SetPoint("TOP", _G.UIParent, "TOP", 0, -135)
     end
-    active_dialogs[#active_dialogs + 1] = dialog
-    dialog:Show()
+end
+active_dialogs[#active_dialogs + 1] = dialog
+dialog:Show()
 
     if dialog.is_new then
         _Dialog_OnShow(dialog)
